@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const { user, logout } = useAuth();
   return (
-    <nav className="bg-white text-black p-3 flex justify-between items-center sticky top-0 z-50 border-b-2 border-black px-4">
+    <nav className="bg-white text-black p-2 flex justify-between items-center sticky top-0 z-50 border-b-2 border-black px-4">
       <div className="flex items-center">
         <img src={logo} alt="Logo" className="h-8 w-8 mr-2" />
         <span className="font-bold text-2xl  text-black p-1">VizUnite</span>
@@ -19,16 +19,19 @@ const Header = () => {
               placeholder="Search"
               className="w-80 bg-slate-200 text-black px-4 py-2 rounded-full mr-4"
             />
-            
-            <img src={user.avatar} alt="" className="w-10 h-10 rounded-full border-2 border-orange-500 mr-2" />
-            
-            <Link to='/profile'> 
-            <button
+
+            <Link to='/profile' className="flex shadow rounded-full overflow-hidden mr-2 bg-blue-600 hover:bg-blue-700 p-1">
+              <img
+                src={user.avatar}
+                alt=""
+                className="w-8 h-8 rounded-full border-2 border-orange-500 shrink-0"
+              />
+
               
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-3xl mr-2"
-            >
-              Profile
-            </button>
+                <button className=" text-white px-4 rounded-3xl w-full">
+                  Profile
+                </button>
+              
             </Link>
             <button
               onClick={logout}

@@ -6,7 +6,7 @@ function UserProfile() {
   const { user } = useAuth();
 
   return (
-    <div className="bg-slate-300 h-screen ml-60">
+    <div className="bg-slate-200 h-screen ml-60">
       <div>
         {user ? (
           <>
@@ -23,7 +23,7 @@ function UserProfile() {
               <img
                 src={user.avatar}
                 alt={user.username}
-                className="w-24 h-24 rounded-full border-2 border-orange-500"
+                className="w-24 h-24 rounded-full border-2 border-orange-500 p-1"
               />
 
               {/* User details */}
@@ -34,7 +34,7 @@ function UserProfile() {
 
               {/* Buttons */}
               <div className="flex items-center space-x-4">
-                <Link to="">
+                <Link to={`/c/${user.username}`}>
                   <button className="bg-blue-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none ">
                     View Channel
                   </button>
@@ -80,7 +80,23 @@ function UserProfile() {
             </div>
           </>
         ) : (
-          <p className="py-4 text-center">Login to see user profile</p>
+          <>
+          <p className="py-4 text-center">Login or Register to see user profile</p>
+          <div className="flex justify-center items-center gap-2 w-5/5">
+              <Link
+                to="/login"
+                className="bg-blue-600 text-white py-2 px-4 rounded-3xl hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+              >
+              Login
+              </Link>
+              <Link
+                to="/register"
+                className="bg-green-600 text-white py-2 px-4 rounded-3xl hover:bg-green-700 focus:outline-none focus:bg-green-700"
+              >
+                Register
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </div>

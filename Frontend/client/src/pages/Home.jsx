@@ -6,7 +6,7 @@ import VideoList from "../components/VideoList/VideoList";
 function Home() {
   const { user, logout } = useAuth();
   return (
-    <div className="bg-slate-300 text-white ml-60">
+    <div className="bg-slate-200 text-white ml-60">
       {/* <div className="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg text-center"> */}
         {user ? (
           <>
@@ -26,7 +26,7 @@ function Home() {
             </button> */}
           </>
         ) : (
-          <div className="h-screen flex flex-col justify-center items-center bg-slate-300 text-black">
+          <div className="h-screen flex flex-col justify-center items-center bg-slate-200 text-black">
             <h1 className="text-4xl font-semibold  text-center">
               Welcome to VizUnite!
             </h1>

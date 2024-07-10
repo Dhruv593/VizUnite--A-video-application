@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import logo from "../../assets/logo.png";
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -25,8 +26,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="bg-slate-300 text-white flex justify-center items-center h-screen">
-      <div className="max-w-md w-full p-6 bg-slate-100 rounded-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+    <div className="bg-slate-200 text-white flex justify-center items-center h-screen">
+      <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+      <div className="flex justify-center mb-2">
+          <img src={logo} alt="" className="w-10 h-10" />
+        </div>
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Login
         </h2>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import logo from "../../assets/logo.png";
 
 const RegistrationForm = () => {
   const { register } = useAuth();
@@ -41,8 +42,11 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="bg-slate-300 text-white flex justify-center items-center h-screen">
-      <div className="max-w-md w-full p-6 bg-slate-100 rounded-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+    <div className="bg-slate-200 text-white flex justify-center items-center h-screen">
+      <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+        <div className="flex justify-center mb-2">
+          <img src={logo} alt="" className="w-10 h-10" />
+        </div>
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Create an Account
         </h2>
@@ -86,7 +90,10 @@ const RegistrationForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -121,7 +128,10 @@ const RegistrationForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="avatar" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="avatar"
+              className="block text-sm font-medium text-gray-700"
+            >
               Avatar
             </label>
             <input
@@ -152,13 +162,13 @@ const RegistrationForm = () => {
             />
           </div>
           <div className="col-span-2">
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md 
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md 
                 hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
-          >
-            Register
-          </button>
+            >
+              Register
+            </button>
           </div>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
@@ -167,7 +177,7 @@ const RegistrationForm = () => {
             href="/login"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
-           &nbsp; Login
+            &nbsp; Login
           </a>
         </p>
       </div>

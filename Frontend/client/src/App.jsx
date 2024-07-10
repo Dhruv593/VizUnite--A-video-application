@@ -15,6 +15,7 @@ import Layout from "./Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserProfile from "./components/UserProfile/UserProfile";
+import UserChannelProfile from "./components/UserChannel/UserChannelProfile";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/navbar" element={<Header />} />
               <Route path="/profile" element={<UserProfile />} />
+              <Route path="/c/:username" element={<UserChannelProfile />} />U
             </Route>
           </Routes>
         </div>

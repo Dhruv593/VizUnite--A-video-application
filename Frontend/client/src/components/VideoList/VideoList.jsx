@@ -50,7 +50,7 @@ function VideoList() {
     <div className="container mx-auto p-4">
       {/* <h1 className="text-2xl font-bold mb-4">Videos</h1> */}
       {selectedVideo ? (
-        <div>
+        <div className="h-screen">
           <button 
             onClick={() => setSelectedVideo(null)} 
             className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-3xl"
@@ -68,7 +68,7 @@ function VideoList() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {Array.isArray(videos) &&
             videos.map((video) => (
-              <div key={video._id} className="relative bg-gray-200 p-1/5 rounded-lg shadow-lg">
+              <div key={video._id} className="relative bg-slate-100 p-1/5 rounded-lg shadow-lg">
                 <img 
                   src={video.thumbnailFile} 
                   alt={video.title} 

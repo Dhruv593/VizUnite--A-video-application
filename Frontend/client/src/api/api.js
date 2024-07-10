@@ -62,13 +62,27 @@ export const fetchAllVideos = async() => {
     const token = localStorage.getItem('accessToken')
     const response = await axiosInstance.get("/videos/all-videos", {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
     })
     return response.data.statusCode.docs
   } catch (error) {
     throw error.response? error.response.data : error.message
 
+  }
+}
+
+export const fetchUserChannelProfile = async(username) => {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const response = await axiosInstance.get(`/users/c/${username}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data.data
+  } catch (error) {
+    throw error.response ?  error.response.data : error.message
   }
 }
 

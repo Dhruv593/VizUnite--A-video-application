@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="bg-slate-200 text-black w-60 h-screen fixed left-0 top-0 py-20 flex flex-col -z-10">
+    <div className="bg-slate-300 text-black w-60 h-screen fixed left-0 top-0 py-20 flex flex-col -z-10 border-r-2 border-black">
       <NavLink to="/" className="px-4 py-2 text-lg bg-white rounded-full my-1 mx-3 shadow-md">Home</NavLink>
       <NavLink to="/liked-videos" className="px-4 py-2 text-lg bg-white rounded-full my-1 mx-3 shadow-md">Liked Videos</NavLink>
       <NavLink to="/history" className="px-4 py-2 text-lg bg-white rounded-full my-1 mx-3 shadow-md">History</NavLink>
