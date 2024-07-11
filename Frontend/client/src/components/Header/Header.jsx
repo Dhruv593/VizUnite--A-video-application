@@ -28,7 +28,7 @@ const Header = () => {
               />
 
               
-                <button className=" text-white px-4 rounded-3xl w-full">
+                <button className=" text-white pr-4 pl-2 rounded-3xl w-full">
                   Profile
                 </button>
               

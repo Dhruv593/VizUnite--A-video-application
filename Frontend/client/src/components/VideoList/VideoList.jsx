@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { fetchAllVideos } from "../../api/api";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Videocard from "../Videocard";
 
 const formatDuration = (duration) => {
   const minutes = Math.floor(duration / 60);
   const seconds = Math.floor(duration % 60);
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
 
 function VideoList() {
@@ -57,7 +58,7 @@ function VideoList() {
           >
             Go Back
           </button>
-          <video controls width="100%" src={selectedVideo.videoFile} className="mt-4" autoPlay></video>
+          <video controls width="100%" src={selectedVideo.videoFile} className="mt-4 rounded-2xl" autoPlay></video>
           <h2 className="text-black text-xl font-bold">{selectedVideo.title}</h2>
           <p className="text-black mt-1">{selectedVideo.description}</p>
           <p className="text-black text-sm mt-1">{selectedVideo.views} Views</p>
@@ -65,56 +66,22 @@ function VideoList() {
           
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.isArray(videos) &&
             videos.map((video) => (
-              <div key={video._id} className="relative bg-slate-100 p-1/5 rounded-lg shadow-lg">
-                <img 
-                  src={video.thumbnailFile} 
-                  alt={video.title} 
-                  className="w-full h-48 object-cover rounded cursor-pointer"
-                  onClick={() => handleThumbnailClick(video)}
+              <Videocard
+                  key={video._id}
+                  video={video}
+                  handleThumbnailClick={handleThumbnailClick}
+                  formatDuration={formatDuration}
                 />
-                <div className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded">
-                  {formatDuration(video.duration)}
-                </div>
-                <div className="px-2">
-                <h2 className="text-lg font-bold mt-2 text-black">{video.title}</h2>
-                {/* <p className="text-gray-400 mt-1">{video.description}</p> */}
-                <p className="text-gray-500 text-sm mt-1">{new Date(video.createdAt).toLocaleString()}</p>
-                <p className="text-gray-500 text-sm mt-1">{video.views} Views</p>
-                </div>
-              </div>
             ))}
         </div>
       )}
     </div>
-    // <div className="-z-10">
-    //   <h1>Videos</h1>
-    //   {selectedVideo ? (
-    //     <div>
-    //       <h2>{selectedVideo.title}</h2>
-    //       <video controls width="100%" src={selectedVideo.videoFile}></video>
-    //       <button onClick={() => setSelectedVideo(null)}>Close</button>
-    //     </div>
-    //   ) : (
-    //     <ul>
-    //       {Array.isArray(videos) &&
-    //         videos.map((video) => (
-    //           <li key={video._id}>
-    //             <h2>{video.title}</h2>
-    //             <p>{video.description}</p>
-    //             <img 
-    //             src={video.thumbnailFile} 
-    //             alt={video.title}
-    //             style={{cursor: 'pointer'}}
-    //             onClick={() => handleThumbnailClick(video)} />
-    //           </li>
-    //         ))}
-    //     </ul>
-    //   )}
-    // </div>
   );
 }
 
 export default VideoList;
+
+

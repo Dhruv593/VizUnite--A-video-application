@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { fetchUserChannelProfile } from "../../api/api";
+import VideoList from "../VideoList/VideoList";
+import Videocard from "../Videocard";
 
 function UserChannelProfile() {
   const { username } = useParams();
@@ -9,6 +11,7 @@ function UserChannelProfile() {
   const [channelData, setChannelData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
     const getChannelData = async () => {
@@ -39,16 +42,17 @@ function UserChannelProfile() {
   }
 
   const handleThumbnailClick = (video) => {
-    console.log("Thumbnail clicked", video);
+    setSelectedVideo(video);
   };
 
   return (
-    <div className="channel-profile bg-slate-200 h-screen ml-60">
+    <div className="channel-profile bg-slate-200 ml-60">
       <img
         src={channelData.coverImage}
         alt="Cover"
         className="cover-image w-full h-48 object-cover"
       />
+      <div className="container mx-auto p-2">
       <div className="profile-details flex items-center justify-start border-b-2  px-6 py-4 bg-white rounded-2xl m-6 shadow-lg">
         <img
           src={channelData.avatar}
@@ -66,39 +70,58 @@ function UserChannelProfile() {
 
         <div className="flex justify-end w-1/2">
           {channelData.isSubscribed ? (
-            <button className="bg-gray-200 text-black px-3 py-2 rounded-full">Subscribed</button>
+            <button className="bg-gray-200 text-black px-3 py-2 rounded-full">
+              Subscribed
+            </button>
           ) : (
-            <button className="bg-red-500 text-white px-3 py-2 rounded-full">Subscribe</button>
+            <button className="bg-red-500 text-white px-3 py-2 rounded-full">
+              Subscribe
+            </button>
           )}
         </div>
       </div>
-      <div className="videos">
-        {channelData.uploadedVideos.map((video) => (
-          <div
-            key={video._id}
-            className="relative bg-slate-100 p-1/5 rounded-lg shadow-lg"
+
+
+      <div className="profile-details flex items-center justify-center border-b-2 p-2 bg-white rounded-2xl m-6 shadow-lg">
+        <button className="w-1/3 bg-blue-500 hover:bg-blue-600 text-white py-1 rounded-xl mr-2">
+          Videos
+        </button>
+        <button className="w-1/3 bg-green-500 hover:bg-green-600 text-white py-1 rounded-xl mx-1">
+          Tweets
+        </button>
+        <button className="w-1/3 bg-red-500 hover:bg-red-600 text-white py-1 rounded-xl ml-2">
+          Playlists
+        </button>
+      </div>
+
+        { selectedVideo ? (
+          <div className="h-screen">
+          <button 
+            onClick={() => setSelectedVideo(null)} 
+            className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-3xl"
           >
-            <img
-              src={video.thumbnailFile}
-              alt={video.title}
-              className="w-full h-48 object-cover rounded cursor-pointer"
-              onClick={() => handleThumbnailClick(video)}
+            Go Back
+          </button>
+          <video controls width="100%" src={selectedVideo.videoFile} className="mt-4 rounded-2xl" autoPlay></video>
+          <h2 className="text-black text-xl font-bold">{selectedVideo.title}</h2>
+          <p className="text-black mt-1">{selectedVideo.description}</p>
+          <p className="text-black text-sm mt-1">{selectedVideo.views} Views</p>
+          <p className="text-black text-sm mt-1">{new Date(selectedVideo.createdAt).toLocaleString()}</p>
+          
+        </div>
+        ) : (
+          <div className="videos grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+          {channelData.uploadedVideos.map((video) => (
+            <Videocard
+              key={video._id}
+              video={video}
+              handleThumbnailClick={handleThumbnailClick}
+              formatDuration={formatDuration}
             />
-            <div className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded">
-              {formatDuration(video.duration)}
-            </div>
-            <div className="px-2">
-              <h2 className="text-lg font-bold mt-2 text-black">
-                {video.title}
-              </h2>
-              {/* <p className="text-gray-400 mt-1">{video.description}</p> */}
-              <p className="text-gray-500 text-sm mt-1">
-                {new Date(video.createdAt).toLocaleString()}
-              </p>
-              <p className="text-gray-500 text-sm mt-1">{video.views} Views</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        )}
+        
       </div>
     </div>
   );
