@@ -48,7 +48,7 @@ function VideoList() {
     return <p>Error: {error}</p>;
   }
   return (
-    <div className="container mx-auto p-4">
+    <div className="container p-4 mx-auto">
       {/* <h1 className="text-2xl font-bold mb-4">Videos</h1> */}
       {selectedVideo ? (
         <div className="h-screen">

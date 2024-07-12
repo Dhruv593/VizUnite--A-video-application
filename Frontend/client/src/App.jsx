@@ -15,7 +15,9 @@ import Layout from "./Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserProfile from "./components/UserProfile/UserProfile";
-import UserChannelProfile from "./components/UserChannel/UserChannelProfile";
+import UserChannelProfile from "./components/UserVideo/UserVideo";
+import Profile from "./components/Profile/Profile";
+import UserVideo from "./components/UserVideo/UserVideo";
 
 function App() {
   return (
@@ -25,13 +27,17 @@ function App() {
           <Routes>
             <Route path="" element={<Layout />}>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login/>} />
+              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/all-videos" element={<VideoList />} />
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/navbar" element={<Header />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/c/:username" element={<UserChannelProfile />} />U
+              {/* <Route path="/c/:username" element={<UserChannelProfile />} /> */}
+              <Route path="/profile/:username" element={<Profile />}>
+                <Route path="profile" element={<UserProfile />} />
+                <Route path="videos" element={<UserVideo/>}/>
+                <Route path="" />
+              </Route>
             </Route>
           </Routes>
         </div>

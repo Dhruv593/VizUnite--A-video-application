@@ -102,28 +102,6 @@ const LoginForm = () => {
         </p>
       </div>
     </div>
-    // <div>
-    //   <h2>Login</h2>
-    //   <form onSubmit={handleSubmit}>
-    //     <input
-    //       type="text"
-    //       name="email"
-    //       value={credentials.email}
-    //       onChange={handleChange}
-    //       placeholder="Email"
-    //       required
-    //     />
-    //     <input
-    //       type="password"
-    //       name="password"
-    //       value={credentials.password}
-    //       onChange={handleChange}
-    //       placeholder="Password"
-    //       required
-    //     />
-    //     <button type="submit">Login</button>
-    //   </form>
-    // </div>
   );
 };
 

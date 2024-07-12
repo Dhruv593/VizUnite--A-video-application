@@ -3,7 +3,7 @@ import RegisterForm from '../components/Register/RegisterForm'
 
 export default function Register() {
   return (
-    <div className='ml-60'>
+    <div className=''>
       <RegisterForm/>
     </div>
   )

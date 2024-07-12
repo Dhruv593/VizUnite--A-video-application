@@ -86,4 +86,92 @@ export const fetchUserChannelProfile = async(username) => {
   }
 }
 
+export const uploadVideo = async (formData) => {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const response = await axiosInstance.post('/videos/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data
+  } catch (error) {
+    throw error.message ? error.response.data : error.message
+  }
+}
+
+export const changePassword = async (formData) => {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const response = await axiosInstance.post('/users/change-password', formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    return response.data
+  } catch (error) {
+    throw error.message ? error.response.data :  error.message
+  }
+}
+
+export const updateAccountDetails = async (formData) => {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const response = await axiosInstance.patch('/users/update-account', formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    return response.data
+  } catch (error) {
+    throw error.message ? error.response.data :  error.message
+  }
+}
+
+export const updateAvatarImage = async (formData) => {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const response = await axiosInstance.patch('/users/avatar', formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      }
+    })
+    return response.data
+  } catch (error) {
+    throw error.message ? error.response.data :  error.message
+  }
+}
+
+export const updateCoverImage = async (formData) => {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const response = await axiosInstance.patch('/users/cover-image', formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      }
+    })
+    return response.data
+  } catch (error) {
+    throw error.message ? error.response.data :  error.message
+  }
+}
+
+export const toggleSubscription = async (channelId) => {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const response = await axiosInstance.post(`/subscriptions/subscriber/${channelId}`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        
+      }
+    })
+    return response.data
+  } catch (error) {
+    throw error.message ? error.response.data :  error.message
+  }
+}
+
 export default axiosInstance;
